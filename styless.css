@@ -1,0 +1,40 @@
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.sectionContenedora{
+    padding: 20px;
+}
+.DivContainer{
+    border: solid 2px rgb(187, 178, 178);
+    display:flex;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.imgHotel{
+    width: 300px;
+    border-radius: 5px;
+}
+.divContendorImgH3{
+    padding: 10px;
+}
+.TitleHotel{
+    color: blue;
+    font-size: 27px;
+    margin-right: 20px;
+}
+.fa-star{
+    color: yellow;
+    font-weight: 100;
+}
+.containerH3Estrella{
+    display: flex;
+    align-items: center;
+}
+.textDescripcion{
+    padding-top: 20px;
+}
