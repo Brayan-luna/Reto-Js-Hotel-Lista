@@ -15,6 +15,15 @@
     margin-bottom: 20px;
     border-radius: 5px;
 }
+.contenedorComentario{
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: solid 2px rgb(187, 178, 178);
+}
+.h3EstrellaComentario{
+    display: flex;
+}
 .imgHotel{
     width: 300px;
     border-radius: 5px;
@@ -26,10 +35,11 @@
     color: blue;
     font-size: 27px;
     margin-right: 20px;
+    text-decoration: none;
 }
 .fa-star{
     color: yellow;
-    font-weight: 100;
+    font-weight: 900;
 }
 .containerH3Estrella{
     display: flex;
@@ -37,4 +47,64 @@
 }
 .textDescripcion{
     padding-top: 20px;
+}
+.corazon{
+    color:red;
+}
+.fa-heart{
+    position: absolute;
+    left: 310px;
+    font-size: 30px;
+}
+.starGray{
+    color: gray;
+}
+.inputs{
+    border: solid 1px black;
+    border-radius: 8px;
+    height: 30px;
+    padding: 10px;
+}
+.inputTextArea{
+    border: solid 1px black;
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+}
+.divWhite{
+    color: #F6F9FC;
+    padding: 20px;
+}
+.divBlu{
+    display: flex;
+    background-color: #4E97FD;
+    width: 400px;
+    border-radius: 10px 0px 0px 10px;
+    align-items: center;
+    justify-content: center;
+}
+.sectionForm{
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow:2px 5px 17px 14px #efefef;
+    margin-bottom: 40px;
+}
+.h3Form{
+    color: black;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+.butonFormComentarios{
+    margin-top: 20px;
+    align-self: center;
+    padding: 30px;
+    border-radius: 20px;
+    color: white;
+    background-color: #4E97FD;
 }
