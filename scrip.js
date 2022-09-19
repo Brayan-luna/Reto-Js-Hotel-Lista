@@ -128,6 +128,7 @@ function filtrarFavoritos() {
   crearItems()
 }
 function regresarHoteles(){
+  botonRegresar.style = "display: none"
   crearItems()
 }
 
@@ -161,7 +162,9 @@ function posicionamientoPagina(id) {
 }
 function crearItems() {
   let sectionContenedora = document.getElementById("sectionContainer");
-  arrayHoteles = JSON.parse(localStorage.getItem('Hoteles'));
+  hoteles = JSON.parse(localStorage.getItem('Hoteles'));
+  let idHotel = JSON.parse(localStorage.getItem('idPagina'));
+  arrayHoteles = hoteles.filter((e) => e.id == idHotel)
   sectionContenedora.innerHTML ="";
   if (remplazoArray === true) {
     arrayHoteles = JSON.parse(localStorage.getItem('Favoritos'));
