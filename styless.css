@@ -108,3 +108,25 @@
     color: white;
     background-color: #4E97FD;
 }
+.divBotonFavo{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.botonFavorito{ 
+    font-size: 20px;
+    color: white;
+    background-color: #4E97FD;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+.Botonregresar{
+    display: none;
+    font-size: 20px;
+    color: white;
+    background-color: #4E97FD;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+}

@@ -32,7 +32,106 @@ let arrayHoteles = [
     "corazon": "",
   }
 ]
+let reviews = [
+  {
+    "id": 1,
+    "hotelId": 1,
+    "title": "Best holiday ever",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "hotelId": 1,
+    "title": "Very clean",
+    "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+    "rating": 4
+  },
+  {
+    "id": 5,
+    "hotelId": 2,
+    "title": "Exceeded all expectations",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "hotelId": 2,
+    "title": "Very clean",
+    "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+    "rating": 4
+  },
+  {
+    "id": 8,
+    "hotelId": 2,
+    "title": "Very clean",
+    "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+    "rating": 4
+  },
+  {
+    "id": 9,
+    "hotelId": 3,
+    "title": "Best holiday ever",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 11,
+    "hotelId": 3,
+    "title": "Best holiday ever",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 12,
+    "hotelId": 3,
+    "title": "Very clean",
+    "description": "Duis blandit, dolor sed posuere sodales, diam lorem tempor libero, at vestibulum turpis nisl porttitor enim. Cras accumsan felis orci, a sagittis lectus porta ut.",
+    "rating": 4
+  },
+  {
+    "id": 18,
+    "hotelId": 4,
+    "title": "Exceeded all expectations",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 20,
+    "hotelId": 4,
+    "title": "Exceeded all expectations",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  },
+  {
+    "id": 22,
+    "hotelId": 4,
+    "title": "Best holiday ever",
+    "description": "Donec a nisi in mi pellentesque placerat vel eu leo. Nulla facilisi. Duis dui nulla, ornare sed efficitur vitae, aliquam vel tortor. Nunc porta varius ex. Donec id porta lacus, ac facilisis nulla. Proin sed felis nec tellus dictum commodo nec quis lorem. Nam ultrices, risus ut maximus ullamcorper, elit tellus tincidunt tortor, eu euismod turpis ipsum et leo.",
+    "rating": 5
+  }
+]
+let remplazoArray = false;
 let IdGlobal = 0;
+//BOTONES REGRESAR Y FILTRAR
+let botonFavoritos = document.getElementById("botonFavorito")
+let botonRegresar = document.getElementById("Regresar");
+botonRegresar.addEventListener("click",regresarHoteles)
+botonFavoritos.addEventListener('click',filtrarFavoritos)
+
+function filtrarFavoritos() {
+  botonRegresar.style = "display: block"
+  let arrayHoteles = JSON.parse(localStorage.getItem('Hoteles'));
+  let arrayCorazones = arrayHoteles.filter((e) => e.corazon == "activado")
+  localStorage.setItem("Favoritos", JSON.stringify(arrayCorazones))
+  remplazoArray = true;
+  crearItems()
+}
+function regresarHoteles(){
+  crearItems()
+}
+
+localStorage.setItem("reviews", JSON.stringify(reviews))
 function guardar() {
   arrayTareas = JSON.parse(localStorage.getItem('Hoteles'));
   localStorage.setItem("Hoteles", JSON.stringify(arrayHoteles));
@@ -56,29 +155,40 @@ function clickFavorite(id, corazon) {
   })
   guardar()
 }
-function posicionamientoPagina(id){
+function posicionamientoPagina(id) {
   let idPagina = id;
   localStorage.setItem("idPagina", JSON.stringify(idPagina));
 }
 function crearItems() {
+  let sectionContenedora = document.getElementById("sectionContainer");
   arrayHoteles = JSON.parse(localStorage.getItem('Hoteles'));
+  sectionContenedora.innerHTML ="";
+  if (remplazoArray === true) {
+    arrayHoteles = JSON.parse(localStorage.getItem('Favoritos'));
+    sectionContenedora.innerHTML =""
+    remplazoArray = false;
+  }
+ else{
+  arrayHoteles = JSON.parse(localStorage.getItem('Hoteles'));
+ }
   arrayHoteles.forEach(element => {
-    let sectionContenedora = document.getElementById("sectionContainer");
     sectionContenedora.className = "sectionContenedora"
     let divContainer = document.createElement("div");
     divContainer.className = "DivContainer"
     let ImgHotel = document.createElement("img");
     ImgHotel.className = "imgHotel";
+    //titulo del hotel 
     let TitleHotel = document.createElement("a");
     TitleHotel.className = "TitleHotel";
-    TitleHotel.addEventListener('click',(e)=>{
-     posicionamientoPagina(element.id)
+    TitleHotel.addEventListener('click', (e) => {
+      posicionamientoPagina(element.id)
     })
-    TitleHotel.setAttribute("href","DetallesHoteles.html")
+    TitleHotel.setAttribute("href", "DetallesHoteles.html")
     let divContenedorImgH3 = document.createElement('div');
     divContenedorImgH3.className = "divContendorImgH3";
     let TextDescricion = document.createElement("p");
     TextDescricion.className = "textDescripcion"
+    // corazon
     let contenedorEstrellaH3 = document.createElement("div")
     let corazonFav = document.createElement('i');
     corazonFav.className = "fa-regular fa-heart";
@@ -89,6 +199,9 @@ function crearItems() {
       corazonFav.className = "fa-regular fa-heart corazon"
       corazonFav.style = "font-weight: 900;"
     }
+    // bton filtro favoritos
+
+
     contenedorEstrellaH3.className = "containerH3Estrella"
     sectionContenedora.insertAdjacentElement("beforeend", divContainer);
     divContainer.insertAdjacentElement('beforeend', ImgHotel);
@@ -106,7 +219,7 @@ function crearItems() {
       EstrellaLet.className = "fa-solid fa-star";
       contenedorEstrellaH3.insertAdjacentElement("beforeend", EstrellaLet);
     }
-    for(o = 0;o < estrellaGris;o++){
+    for (o = 0; o < estrellaGris; o++) {
       let EstrellaLet = document.createElement("i");
       EstrellaLet.className = "fa-solid fa-star starGray";
       contenedorEstrellaH3.insertAdjacentElement("beforeend", EstrellaLet);
