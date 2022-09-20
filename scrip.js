@@ -4,6 +4,7 @@ let remplazoArray = false;
 let IdGlobal = 0;
 let urlTest = `https://my-json-server.typicode.com/manuelmebm/testing-hotel-api/${urlHoteles}`;
 
+
 const traerDatos = fetch(urlTest, {
   method: 'GET',
   headers: {
@@ -18,13 +19,10 @@ const traerDatos = fetch(urlTest, {
     crearItems()
   })
   .catch((error) => {
-    console.log(error)
+    alert(`No se ha podido cargar la pagina `)
   })
-  
-  function posicionamientoPagina(id) {
-    let idPagina = id;
-    localStorage.setItem("idPagina", JSON.stringify(idPagina));
-  }
+
+
 function clickFavorite(id, corazon) {
   IdGlobal = id
   arrayHoteles.forEach(element => {
@@ -55,11 +53,9 @@ function crearItems() {
     ImgHotel.className = "imgHotel";
     //titulo del hotel 
     let TitleHotel = document.createElement("a");
+    TitleHotel.setAttribute("href", `DetallesHoteles.html?Id=${element.id}`)
     TitleHotel.className = "TitleHotel";
-    TitleHotel.addEventListener('click', (e) => {
-      posicionamientoPagina(element.id)
-    })
-    TitleHotel.setAttribute("href", "DetallesHoteles.html")
+    
     let divContenedorImgH3 = document.createElement('div');
     divContenedorImgH3.className = "divContendorImgH3";
     let TextDescricion = document.createElement("p");
