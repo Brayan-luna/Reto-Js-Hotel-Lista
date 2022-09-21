@@ -163,13 +163,21 @@ function crearItems() {
     }
   })
 }
+function validar(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput){
+  if(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(titleComentarioInput) && /^[0-9]+$/.test(ratingComentarioInput)&& /\S/.test(textAreaComentarioInput)){
+    crearNuevoComentario(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput)
+  }
+  else{
+    alert('rellena bien los campos')
+  }
+}
 let formulario = document.getElementById("form");
 formulario.addEventListener('submit', (e) => {
   e.preventDefault()
   let titleComentarioInput = document.getElementById("TitleComentario").value;
   let ratingComentarioInput = document.getElementById("raiting").value;
   let textAreaComentarioInput = document.getElementById("textoComentario").value;
-  crearNuevoComentario(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput)
+  validar(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput)
   formulario.reset()
   imprimirComentarios()
 })

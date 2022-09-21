@@ -19,7 +19,7 @@ const traerDatos = fetch(urlTest, {
     crearItems()
   })
   .catch((error) => {
-    alert(`No se ha podido cargar la pagina `)
+    alert(error)
   })
 
 
