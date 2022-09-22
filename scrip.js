@@ -32,9 +32,7 @@ const traerDatos = fetch(urlTest, {
   })
 
 
-function recargarArrayHotels() {
-  crearItems()
-}
+
 
 function clickCorazon(corazonn, id) {
   arrayHoteles.forEach(element => {
@@ -49,9 +47,17 @@ function clickCorazon(corazonn, id) {
         corazonn.className = "fa-regular fa-heart"
         corazonn.style = "font-weight: 400;"
         if(filter == true){
+
           cambioArray = true
           arrayCorazones = arrayHoteles.filter(element => element.corazon === "activado")
           crearItems()
+          if(arrayCorazones.length == 0 ){
+            filter =false
+            arrayHoteles = dataTotal
+            cambioArray = false;
+            alert('No hay hoteles favoritos asi que te mandaremos a la pagina principal')
+            crearItems()
+          }
         }
       }
     }
@@ -74,6 +80,7 @@ function btonfiltrar() {
     botonRegresar.style = "display: block;"
     botonRegresar.addEventListener('click', (e) => {
       cambioArray = false;
+      filter = false;
       botonRegresar.style = "display: none;"
       botonFiltrar.style = "display: block"
       crearItems()
