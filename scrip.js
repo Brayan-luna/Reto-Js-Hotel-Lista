@@ -57,6 +57,10 @@ function clickCorazon(corazonn, id) {
             cambioArray = false;
             alert('No hay hoteles favoritos asi que te mandaremos a la pagina principal')
             crearItems()
+            let botonFiltrar = document.getElementById("botonFavorito");
+            botonFiltrar.style = "display: block"
+            let botonRegresar = document.getElementById("Regresar");
+            botonRegresar.style = "display: none;"
           }
         }
       }
