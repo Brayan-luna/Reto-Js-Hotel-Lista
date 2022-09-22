@@ -131,6 +131,8 @@ function crearItems() {
     corazonFav.className = "fa-regular fa-heart";
     corazonFav.addEventListener('click', (e) => {
       clickFavorite(element.id, corazonFav)
+      corazonFav.className = "fa-regular fa-heart corazon"
+      corazonFav.style = "font-weight: 900;"
     })
     if (element.corazon == "activado") {
       corazonFav.className = "fa-regular fa-heart corazon"
@@ -164,8 +166,10 @@ function crearItems() {
   })
 }
 function validar(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput){
-  if(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(titleComentarioInput) && /^[0-9]+$/.test(ratingComentarioInput)&& /\S/.test(textAreaComentarioInput)){
+
+  if(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(titleComentarioInput) && /^[0-9]+$/.test(ratingComentarioInput) && ratingComentarioInput.length ==1 && /^[0-5]+$/.test(ratingComentarioInput)&& /\S/.test(textAreaComentarioInput)){
     crearNuevoComentario(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput)
+    formulario.reset()
   }
   else{
     alert('rellena bien los campos')
@@ -178,7 +182,6 @@ formulario.addEventListener('submit', (e) => {
   let ratingComentarioInput = document.getElementById("raiting").value;
   let textAreaComentarioInput = document.getElementById("textoComentario").value;
   validar(titleComentarioInput, ratingComentarioInput, textAreaComentarioInput)
-  formulario.reset()
   imprimirComentarios()
 })
 document.addEventListener('DOMContentLoaded', imprimirComentarios)

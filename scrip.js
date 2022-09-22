@@ -1,7 +1,11 @@
 let arrayHoteles = [];
+let elements = [];
+let arrayCorazones = [];
 let urlHoteles = "hotels"
-let remplazoArray = false;
+let cambioArray = false;
 let IdGlobal = 0;
+let filter = false;
+let dataTotal = null;
 let urlTest = `https://my-json-server.typicode.com/manuelmebm/testing-hotel-api/${urlHoteles}`;
 
 
@@ -15,7 +19,12 @@ const traerDatos = fetch(urlTest, {
   .then((response) => response.json())
   .then((data) => {
     arrayHoteles = data;
+    arrayHoteles.forEach(element=>{
+      let indexElem = arrayHoteles.indexOf(element)
+      arrayHoteles[indexElem].corazon = "";
+    })
     console.log(data)
+    dataTotal = data
     crearItems()
   })
   .catch((error) => {
@@ -23,28 +32,63 @@ const traerDatos = fetch(urlTest, {
   })
 
 
-function clickFavorite(id, corazon) {
-  IdGlobal = id
+function recargarArrayHotels() {
+  crearItems()
+}
+
+function clickCorazon(corazonn, id) {
   arrayHoteles.forEach(element => {
-    if (element.id == IdGlobal) {
+    if (element.id == id) {
       if (element.corazon === "") {
         element.corazon = "activado"
-        corazon.className = "fa-regular fa-heart corazon"
-        corazon.style = "font-weight: 900;"
+        corazonn.className = "fa-regular fa-heart corazon"
+        corazonn.style = "font-weight: 900;"
       }
       else {
         element.corazon = ""
-        corazon.className = "fa-regular fa-heart"
-        corazon.style = "font-weight: 400;"
-
+        corazonn.className = "fa-regular fa-heart"
+        corazonn.style = "font-weight: 400;"
+        if(filter == true){
+          cambioArray = true
+          arrayCorazones = arrayHoteles.filter(element => element.corazon === "activado")
+          crearItems()
+        }
       }
     }
-
+ 
   })
+
+}
+function btonfiltrar() {
+  filter = true;
+  cambioArray = true
+  arrayCorazones = arrayHoteles.filter(element => element.corazon === "activado")
+  if(arrayCorazones.length == 0 ){
+    alert('No hay hoteles por filtar')
+  }
+  else{
+    crearItems()
+    let botonFiltrar = document.getElementById("botonFavorito");
+    botonFiltrar.style = "display: none"
+    let botonRegresar = document.getElementById("Regresar");
+    botonRegresar.style = "display: block;"
+    botonRegresar.addEventListener('click', (e) => {
+      cambioArray = false;
+      botonRegresar.style = "display: none;"
+      botonFiltrar.style = "display: block"
+      crearItems()
+    })
+  }
 }
 function crearItems() {
   let sectionContenedora = document.getElementById("sectionContainer");
   sectionContenedora.innerHTML = "";
+  if (cambioArray == true) {
+    arrayHoteles = arrayCorazones;
+  }
+  else {
+    arrayHoteles = dataTotal
+  }
   arrayHoteles.forEach(element => {
     sectionContenedora.className = "sectionContenedora"
     let divContainer = document.createElement("div");
@@ -55,7 +99,7 @@ function crearItems() {
     let TitleHotel = document.createElement("a");
     TitleHotel.setAttribute("href", `DetallesHoteles.html?Id=${element.id}`)
     TitleHotel.className = "TitleHotel";
-    
+
     let divContenedorImgH3 = document.createElement('div');
     divContenedorImgH3.className = "divContendorImgH3";
     let TextDescricion = document.createElement("p");
@@ -65,13 +109,16 @@ function crearItems() {
     let corazonFav = document.createElement('i');
     corazonFav.className = "fa-regular fa-heart";
     corazonFav.addEventListener('click', (e) => {
-      clickFavorite(element.id, corazonFav)
+      clickCorazon(corazonFav,element.id)
     })
     if (element.corazon == "activado") {
       corazonFav.className = "fa-regular fa-heart corazon"
       corazonFav.style = "font-weight: 900;"
     }
-    // bton filtro favoritos
+    else {
+      corazonFav.className = "fa-regular fa-heart"
+      corazonFav.style = "font-weight: 400;"
+    }
     contenedorEstrellaH3.className = "containerH3Estrella"
     sectionContenedora.insertAdjacentElement("beforeend", divContainer);
     divContainer.insertAdjacentElement('beforeend', ImgHotel);
@@ -95,4 +142,7 @@ function crearItems() {
       contenedorEstrellaH3.insertAdjacentElement("beforeend", EstrellaLet);
     }
   })
+
 }
+let botonFiltrar = document.getElementById("botonFavorito");
+botonFiltrar.addEventListener('click', btonfiltrar)
